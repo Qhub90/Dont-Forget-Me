@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Card from "./components/Cards/";
+import Wrapper from "./components/Wrapper/";
+import cards from "./cards.json"
 import './App.css';
 
 class App extends Component {
+
+   state = {
+     cards:cards,
+     count:0
+   };
+   
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Wrapper>
+      {this.state.cards.map(friend => (
+          <Card
+            id={friend.id}
+            key={friend.id}
+            name={friend.name}
+            image={friend.image}            
+          />
+        ))}
+      </Wrapper>
     );
   }
 }
